@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Compostables list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Organicwaste</th>
+                <th>Iscompostable</th>
+                <th>Note</th>
+                <th>Preconization</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for compostable in compostables %}
+            <tr>
+                <td><a href="{{ path('compostable_show', { 'id': compostable.id }) }}">{{ compostable.id }}</a></td>
+                <td>{{ compostable.organicWaste }}</td>
+                <td>{% if compostable.isCompostable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ compostable.note }}</td>
+                <td>{{ compostable.preconization }}</td>
+                <td>{{ compostable.image }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('compostable_show', { 'id': compostable.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('compostable_edit', { 'id': compostable.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('compostable_new') }}">Create a new compostable</a>
+        </li>
+    </ul>
+{% endblock %}

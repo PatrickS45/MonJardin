@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Compostable</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ compostable.id }}</td>
+            </tr>
+            <tr>
+                <th>Organicwaste</th>
+                <td>{{ compostable.organicWaste }}</td>
+            </tr>
+            <tr>
+                <th>Iscompostable</th>
+                <td>{% if compostable.isCompostable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ compostable.note }}</td>
+            </tr>
+            <tr>
+                <th>Preconization</th>
+                <td>{{ compostable.preconization }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ compostable.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('compostable_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('compostable_edit', { 'id': compostable.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
